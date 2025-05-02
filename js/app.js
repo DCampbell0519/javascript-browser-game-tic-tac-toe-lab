@@ -109,16 +109,11 @@ function checkForWinner() {
 
 function checkForTie() {
     if (winner === true) {
+        tie = false;
         return;
     } 
-    board.forEach(square => {
-        if (square.textContent === "") {
-            tie = false;
-            // console.log(tie)    
-        } else if (square.textContent !== "" && winner === false) {
-            tie = true;
-        }
-    })
+    const fullBoard = board.every(square => square !== "");
+    tie = fullBoard;
 }
 
 function switchPlayerTurn() {
