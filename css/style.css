@@ -18,4 +18,14 @@ body {
     font-size: 64px;
     text-align: center;
   }
+
+  #reset {
+    width: 100px;
+    height: 30px;
+    margin-left: 105px;
+    margin-top: 20px;
+    font-size: 15px;
+    border-width: medium; 
+    background-color: lightblue;
+  }
   
