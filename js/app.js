@@ -1,15 +1,4 @@
 /*-------------------------------- Constants --------------------------------*/
-const winningCombos = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-]
-
 
 
 /*---------------------------- Variables (state) ----------------------------*/
@@ -22,16 +11,12 @@ let tie;
 /*------------------------ Cached Element References ------------------------*/
 const squareEls = document.querySelectorAll('.sqr')
 
-// console.log(squareEls)
 const messageEl = document.querySelector('#message')
-// console.log(messageEl)
 
 const resetBtnEl = document.querySelector('#reset')
-// console.log(resetBtnEl)
 
 /*-------------------------------- Functions --------------------------------*/
 function init() {
-    // console.log("initialized")
     board = ['', '', '', '', '', '', '', '', ''];
     turn = "X";
     winner = false;
@@ -42,13 +27,8 @@ window.onload = init;
 
 function updateBoard() {
     board.forEach((square, sqrIdx) => {
-        // console.log(board)
         squareEls[sqrIdx].innerText = square;
     })
-    // const square = event.target;
-    // if (squareIndex.innerText === "") {
-    //     squareIndex.innerText = turn;
-    // }
 }
 
 function updateMessage() {
@@ -67,27 +47,22 @@ function render() {
 }
 
 function handleClick(event) {
-    // console.log("click handled")
-    // console.log(event.target)
     const squareIndex = parseInt(event.target.id);
-    console.log(squareIndex)
+
     if (board[squareIndex] === "X" || board[squareIndex] === "O") {
         return;
     } else if (winner === true) {
         return;
     }
-    // console.log("click handled 2")
     placePiece(squareIndex)
     checkForWinner();
     checkForTie();
     switchPlayerTurn();
-    console.log(turn)
     render();
 }
 
 function placePiece(index) {
     board[index] = turn;
-    // console.log(board)
 }
 
 function checkForWinner() {
@@ -106,7 +81,6 @@ function checkForWinner() {
     ) 
         {
             winner = true;
-            // console.log(winner)
         }
 }
 
@@ -115,8 +89,8 @@ function checkForTie() {
         tie = false;
         return;
     } 
-    const fullBoard = board.every(square => square !== "");
-    tie = fullBoard;
+    const isBoardFull = !board.includes("");
+    tie = isBoardFull;
 }
 
 function switchPlayerTurn() {
@@ -124,7 +98,7 @@ function switchPlayerTurn() {
         return;
     } 
     if (turn === "X") {
-        turn = "O"
+        turn = "O";
     } else if (turn === "O") {
         turn = "X";
     }
